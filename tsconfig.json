@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+      "types": ["cypress"], // Include Cypress types
+      "allowJs": true,      // Allow JavaScript files
+      "noEmit": true        // Prevent emitting compiled files
+    },
+    "include": [
+      "cypress/**/*.js",    // Include Cypress files
+      "cypress/**/*.ts"     // Include TypeScript files (if any)
+    ]
+  }

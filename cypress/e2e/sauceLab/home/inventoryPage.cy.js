@@ -1,0 +1,10 @@
+const { inventoryPageComponents } = require("../../../pages/sauceLab/inventoryPage/inventoryPageComponents")
+
+describe('Validate inventory Page Products', () => {
+    before(()=> {
+        cy.login('standard_user', 'secret_sauce')
+    })
+    it('Verify Products', ()=> {
+        inventoryPageComponents.productDetails()
+    })
+})

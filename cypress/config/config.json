@@ -1,0 +1,11 @@
+{
+    "demo" : {
+        "qa" : {
+            "baseUrl": "https://www.saucedemo.com"
+        },
+        "prod" : {
+            "baseUrl": "https://www.saucedemo.com"
+            
+        }
+    }
+}
