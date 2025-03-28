@@ -16,3 +16,4 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 import './helper/authentication/login'
+import 'cypress-mochawesome-reporter/register'
