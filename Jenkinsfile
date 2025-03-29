@@ -30,6 +30,9 @@ pipeline {
                 bat 'npx cypress run'
             }
         }
+
+        
+
     }
 
     post {
@@ -37,5 +40,15 @@ pipeline {
             archiveArtifacts artifacts: 'cypress/screenshots/**/*', allowEmptyArchive: true
             // archiveArtifacts artifacts: 'cypress/videos/**/*', allowEmptyArchive: true
         }
+        success {
+            // Send email upon job success
+            emailext(
+                subject: "Jenkins Job Completed - ${env.JOB_NAME}",
+                body: "Please find the HTML report attached.",
+                attachPattern: "\html\index.html",
+                to: "pradeepta46@gmail.com"
+            )
+        }
+
     }
 }
