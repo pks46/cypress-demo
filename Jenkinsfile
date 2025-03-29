@@ -16,10 +16,10 @@ pipeline {
             steps {
                 // Set up Node.js environment
                 withEnv(['NODE_HOME=/path/to/node', 'PATH+NODE=${NODE_HOME}/bin']) {
-                    sh 'npm install'
+                    bat 'npm install'
                 }
                 withEnv(['PATH+NODE=${tool name of NodeJS}/bin']) {
-                    sh 'npm install'
+                    bat 'npm install'
                 }
 
             }
@@ -27,7 +27,7 @@ pipeline {
 
         stage('Run Cypress Tests') {
             steps {
-                sh 'npx cypress run'
+                bat 'npx cypress run'
             }
         }
     }
