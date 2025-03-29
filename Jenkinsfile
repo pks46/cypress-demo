@@ -45,7 +45,7 @@ pipeline {
             emailext(
                 subject: "Jenkins Job Completed - ${env.JOB_NAME}",
                 body: "Please find the HTML report attached.",
-                attachPattern: "/html/index.html",
+                attachPattern: "index.html",
                 to: "pradeepta46@gmail.com"
             )
         }
