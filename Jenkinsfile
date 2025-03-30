@@ -49,6 +49,7 @@ pipeline {
 
     post {
         success {
+            sleep(10)
             // Send email upon job success
             emailext(
                 subject: "Jenkins Job Completed - ${env.JOB_NAME}",
