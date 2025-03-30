@@ -12,6 +12,19 @@ pipeline {
             }
         }
 
+        stage('Clean Previous Reports') {
+            steps {
+                script {
+                    def reportPath = "${env.WORKSPACE}/cypress/reports/html/index.html"
+                    if (fileExists(reportPath)) {
+                        bat "rm -f ${reportPath}"
+                    } else {
+                        echo "No previous report found to delete."
+                    }
+                }
+            }
+
+
         stage('Install Dependencies') {
             steps {
                 // Set up Node.js environment
@@ -31,21 +44,15 @@ pipeline {
             }
         }
 
-        
-
     }
 
     post {
-        always {
-            archiveArtifacts artifacts: 'cypress/screenshots/**/*', allowEmptyArchive: true
-            // archiveArtifacts artifacts: 'cypress/videos/**/*', allowEmptyArchive: true
-        }
         success {
             // Send email upon job success
             emailext(
                 subject: "Jenkins Job Completed - ${env.JOB_NAME}",
                 body: "Please find the HTML report attached.",
-                attachmentsPattern: "cypress/reports/html/index.html",
+                attachmentsPattern: "${env.WORKSPACE}/cypress/reports/html/index.html",
                 to: "pradeepta46@gmail.com"
             )
         }
