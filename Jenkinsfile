@@ -23,6 +23,7 @@ pipeline {
                     }
                 }
             }
+        }
 
 
         stage('Install Dependencies') {
