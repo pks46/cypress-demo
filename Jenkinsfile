@@ -15,7 +15,7 @@ pipeline {
         stage('Clean Previous Reports') {
             steps {
                 script {
-                    def reportPath = "${env.WORKSPACE}/cypress/reports/html/index.html"
+                    def reportPath = "cypress/reports/html/index.html"
                     if (fileExists(reportPath)) {
                         bat "del /f /q ${reportPath}"
                     } else {
@@ -53,7 +53,7 @@ pipeline {
             emailext(
                 subject: "Jenkins Job Completed - ${env.JOB_NAME}",
                 body: "Please find the HTML report attached.",
-                attachmentsPattern: "${env.WORKSPACE}/cypress/reports/html/index.html",
+                attachmentsPattern: "cypress/reports/html/index.html",
                 to: "pradeepta46@gmail.com"
             )
         }
