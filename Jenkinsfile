@@ -17,7 +17,7 @@ pipeline {
                 script {
                     def reportPath = "${env.WORKSPACE}/cypress/reports/html/index.html"
                     if (fileExists(reportPath)) {
-                        bat "rm -f ${reportPath}"
+                        bat "del /f /q ${reportPath}"
                     } else {
                         echo "No previous report found to delete."
                     }
