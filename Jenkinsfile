@@ -25,7 +25,6 @@ pipeline {
             }
         }
 
-
         stage('Install Dependencies') {
             steps {
                 // Set up Node.js environment
@@ -38,6 +37,21 @@ pipeline {
 
             }
         }
+
+        stage('Build') {
+            steps {
+                script {
+                    writeFile file: 'cypress.env.json', text: """
+                    {
+                        "SITE": "${SITE}",
+                        "ENV": "${ENV}"
+                    }
+                    """
+                    echo "Updated cypress.env.json with SITE, ENV"
+                }
+            }
+        }
+
 
         stage('Run Cypress Tests') {
             steps {
