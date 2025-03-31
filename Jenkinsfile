@@ -41,7 +41,7 @@ pipeline {
 
         stage('Run Cypress Tests') {
             steps {
-                bat 'npx cypress run'
+                bat 'npx cypress run --env SITE=${params.SITE}, ENV=${params.ENV} --browser=${BROWSER}'
             }
         }
 
