@@ -43,8 +43,8 @@ pipeline {
                 script {
                     writeFile file: 'cypress.env.json', text: """
                     {
-                        "SITE": "${param.SITE}",
-                        "ENV": "${param.ENV}"
+                        "SITE": "${params.SITE}",
+                        "ENV": "${params.ENV}"
                     }
                     """
                     echo "Updated cypress.env.json with SITE, ENV"
