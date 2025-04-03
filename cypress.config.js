@@ -5,9 +5,8 @@ module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here
-      // screenshotOnRunFailure=true
-      require('cypress-mochawesome-reporter/plugin')(on); // for HTML Report
-      require('./cypress/baseUrlProperties/index.js')(on, config); //for baseUrl setup
-      }
+      require('cypress-mochawesome-reporter/plugin')(on) // for HTML Report
+      return require('./cypress/baseUrlProperties/index.js')(on, config) //call baseUrl setup
+      } 
   }
 })
