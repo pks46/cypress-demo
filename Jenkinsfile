@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: "${params.Choose_Branch}", url: 'https://github.com/pks46/cypress-demo.git'
+                git branch: 'main', url: 'https://github.com/pks46/cypress-demo.git'
             }
         }
 
@@ -68,7 +68,7 @@ pipeline {
             emailext(
                 subject: "Jenkins Job Completed - ${env.JOB_NAME}",
                 body: "Please find the HTML report attached.",
-                attachmentsPattern: "${env.WORKSPACE}\\cypress\\reports\\html\\index.html",
+                attachmentsPattern: "cypress/reports/html/index.html",
                 to: "pradeepta46@gmail.com"
             )
         }
