@@ -15,16 +15,15 @@ pipeline {
         stage('Clean Previous Reports') {
             steps {
                 script {
-                    def reportPath = "${env.WORKSPACE}/cypress/reports/html/index.html"
+                    def reportPath = "${env.WORKSPACE}\\cypress\\reports\\html\\index.html"
                     if (fileExists(reportPath)) {
-                        bat "del /f /q ${reportPath}"
+                        bat "del /f /q \"${reportPath}\""
                     } else {
                         echo "No previous report found to delete."
                     }
                 }
             }
         }
-
 
         stage('Install Dependencies') {
             steps {
@@ -39,6 +38,21 @@ pipeline {
             }
         }
 
+        stage('Build') {
+            steps {
+                script {
+                    writeFile file: 'cypress.env.json', text: """
+                    {
+                        "SITE": "${params.SITE}",
+                        "ENV": "${params.ENV}"
+                    }
+                    """
+                    echo "Updated cypress.env.json with SITE, ENV"
+                }
+            }
+        }
+
+
         stage('Run Cypress Tests') {
             steps {
                 bat 'npx cypress run'
@@ -49,11 +63,12 @@ pipeline {
 
     post {
         success {
+            sleep(10)
             // Send email upon job success
             emailext(
                 subject: "Jenkins Job Completed - ${env.JOB_NAME}",
                 body: "Please find the HTML report attached.",
-                attachmentsPattern: "${env.WORKSPACE}/cypress/reports/html/index.html",
+                attachmentsPattern: "cypress/reports/html/index.html",
                 to: "pradeepta46@gmail.com"
             )
         }

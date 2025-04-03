@@ -5,7 +5,8 @@ declare namespace Cypress {
        * @param username - User's username
        * @param password - User's password
        */
-      login(username: string, password: string): Chainable<any>;
+      login: (username: string, password: string) => void
+      loginPreserveSession: (username, password) => void
     }
   }
   
