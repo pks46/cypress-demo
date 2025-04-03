@@ -68,7 +68,7 @@ pipeline {
             emailext(
                 subject: "Jenkins Job Completed - ${env.JOB_NAME}",
                 body: "Please find the HTML report attached.",
-                attachmentsPattern: "${env.WORKSPACE}\\cypress/reports/html/index.html",
+                attachmentsPattern: "./cypress/reports/html/index.html",
                 to: "pradeepta46@gmail.com"
             )
         }
