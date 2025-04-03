@@ -8,6 +8,6 @@ describe('Validate inventory Page Products', () => {
         inventoryPageComponents.productDetails()
     })
     it('Verify the page has menu options', () => {
-
+        //
     })
 })
